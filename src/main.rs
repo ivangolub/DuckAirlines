@@ -21,7 +21,7 @@ impl Location
 
 
 fn main() {
-    const EARTH_RADIUS_IN_KILOMETERS: f64 = 6371.0;
+    const EARTH_RADIUS_IN_KM: f64 = 6371.0;
 
     let route = [
          Location::new(String::from("KCLE"), 41.4075, -81.851111),
@@ -69,7 +69,7 @@ fn main() {
                         * f64::powi((delta_longitude / 2.0).sin(), 2);
 
                 let central_angle = 2.0 * inner_central_angle.sqrt().asin();
-                let distance = EARTH_RADIUS_IN_KILOMETERS * central_angle;
+                let distance = EARTH_RADIUS_IN_KM * central_angle;
 
                 total_distance += distance;
 
