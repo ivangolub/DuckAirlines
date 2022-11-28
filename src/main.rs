@@ -1,3 +1,5 @@
+//#![allow(nonstandard_style)]
+use std::vec;
 const EARTH_RADIUS_IN_KM: f64 = 6371.0;
 #[derive (Copy, Clone)]
 struct Location <'a>
@@ -9,7 +11,7 @@ struct Location <'a>
 
 struct Route<'a>
 {
-    airports: [Location<'a>; 21]
+    airports: Vec<Location<'a>>
 }
 
 impl Location <'_>
@@ -27,7 +29,7 @@ impl Location <'_>
 
 impl Route<'_>
 {
-    fn new(airports: [Location; 21]) -> Route
+    fn new(airports: Vec<Location>) -> Route
     {
         Route
         {
@@ -35,7 +37,7 @@ impl Route<'_>
         }
     }
 
-    fn total_distance(airports: [Location; 21]) -> f64
+    fn total_distance(airports: Vec<Location>) -> f64
     {
         let mut total_distance = 0.0;
         let mut previous_waypoint: Option<Location> = None;
@@ -79,8 +81,7 @@ impl Route<'_>
 
 
 fn main() {
-
-    let airports_in_route = [
+    let airports: Vec<Location> = vec![
          Location::new("KCLE", 41.4075, -81.851111),
          Location::new("LEYIR", 41.51030, -83.88080),
          Location::new("PIONS", 41.65390, -84.48190),
@@ -104,7 +105,7 @@ fn main() {
          Location::new("KSLC", 40.7861, -111.9822)
     ];
 
-    let route77: Route = Route::new(airports_in_route);
+    let route77: Route = Route::new(airports);
 
     println!(
         "\nThe total distance between the two points is {:.1} kilometers",
